@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Claudinei | Vice-Presidente Influenciadores do Brasil</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Barlow:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --verde: #009C3B;
+      --amarelo: #FFDF00;
+      --azul: #002776;
+      --azul-escuro: #001A55;
+      --branco: #ffffff;
+      --cinza-claro: #f5f5f0;
+      --cinza-texto: #555;
+      --radius: 12px;
+    }
+
+    body {
+      font-family: 'Barlow', sans-serif;
+      background: var(--cinza-claro);
+      color: #222;
+      line-height: 1.7;
+    }
+
+    a { text-decoration: none; color: inherit; }
+
+    /* ===== NAV ===== */
+    nav {
+      background: var(--azul);
+      position: sticky; top: 0; z-index: 100;
+      border-bottom: 3px solid var(--amarelo);
+    }
+    .nav-inner {
+      max-width: 1100px; margin: 0 auto;
+      padding: 0 2rem;
+      display: flex; align-items: center; justify-content: space-between;
+      height: 64px;
+    }
+    .nav-logo {
+      display: flex; align-items: center; gap: 12px;
+    }
+    .nav-logo-c {
+      width: 38px; height: 38px; border-radius: 50%;
+      background: var(--amarelo);
+      display: flex; align-items: center; justify-content: center;
+      font-family: 'Playfair Display', serif;
+      font-size: 20px; font-weight: 700; color: var(--azul);
+    }
+    .nav-nome {
+      color: #fff; font-size: 15px; font-weight: 500;
+      letter-spacing: 3px;
+    }
+    .nav-links {
+      display: flex; gap: 2rem; list-style: none;
+    }
+    .nav-links a {
+      color: rgba(255,255,255,0.7); font-size: 13px;
+      letter-spacing: 1px; font-weight: 400;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--amarelo); }
+
+    /* ===== HERO ===== */
+    .hero {
+      background: var(--azul);
+      padding: 5rem 2rem 4rem;
+      position: relative; overflow: hidden;
+    }
+    .hero::after {
+      content: '';
+      position: absolute; bottom: 0; left: 0; right: 0;
+      height: 6px;
+      background: linear-gradient(90deg, var(--verde) 33%, var(--amarelo) 33%, var(--amarelo) 66%, var(--azul-escuro) 66%);
+    }
+    .hero-geo {
+      position: absolute; right: 5%; top: 50%;
+      transform: translateY(-50%);
+      opacity: 0.07; pointer-events: none;
+    }
+    .hero-inner { max-width: 1100px; margin: 0 auto; position: relative; }
+    .hero-badge {
+      display: inline-block;
+      background: var(--verde); color: var(--amarelo);
+      font-size: 11px; letter-spacing: 3px; font-weight: 600;
+      padding: 5px 16px; border-radius: 2px; margin-bottom: 1.5rem;
+    }
+    .hero h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2rem, 4vw, 3rem);
+      color: var(--amarelo); font-weight: 700;
+      line-height: 1.2; max-width: 600px; margin-bottom: 1rem;
+    }
+    .hero p {
+      color: rgba(255,255,255,0.65); font-size: 16px;
+      max-width: 500px; margin-bottom: 2rem; font-weight: 300;
+    }
+    .hero-btn {
+      display: inline-block;
+      background: var(--amarelo); color: var(--azul);
+      font-size: 13px; font-weight: 600; letter-spacing: 1px;
+      padding: 12px 28px; border-radius: 4px;
+      transition: opacity 0.2s;
+    }
+    .hero-btn:hover { opacity: 0.85; }
+
+    /* ===== MAIN LAYOUT ===== */
+    .container { max-width: 1100px; margin: 0 auto; padding: 3rem 2rem; }
+    .layout { display: grid; grid-template-columns: 1fr 300px; gap: 2.5rem; }
+
+    /* ===== SECTION LABEL ===== */
+    .section-label {
+      font-size: 11px; letter-spacing: 4px; font-weight: 600;
+      color: var(--verde); margin-bottom: 1.25rem;
+      display: flex; align-items: center; gap: 10px;
+    }
+    .section-label::after {
+      content: ''; flex: 1; height: 1px; background: #ddd;
+    }
+
+    /* ===== POST DESTAQUE ===== */
+    .post-destaque {
+      background: #fff; border-radius: var(--radius);
+      overflow: hidden; margin-bottom: 2rem;
+      box-shadow: 0 2px 20px rgba(0,0,0,0.06);
+      transition: transform 0.2s;
+    }
+    .post-destaque:hover { transform: translateY(-2px); }
+    .post-destaque-img {
+      background: var(--azul); height: 220px;
+      display: flex; align-items: center; justify-content: center;
+      position: relative; overflow: hidden;
+    }
+    .post-destaque-img svg { position: absolute; opacity: 0.15; }
+    .post-tag {
+      position: absolute; top: 16px; left: 16px;
+      background: var(--amarelo); color: var(--azul);
+      font-size: 10px; font-weight: 700; letter-spacing: 2px;
+      padding: 4px 12px; border-radius: 2px;
+    }
+    .post-destaque-icon {
+      font-size: 56px; color: rgba(255,223,0,0.15); z-index: 1;
+    }
+    .post-destaque-body { padding: 1.75rem; }
+    .post-destaque-body h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 22px; font-weight: 700; color: #111;
+      line-height: 1.35; margin-bottom: 0.75rem;
+    }
+    .post-destaque-body p {
+      font-size: 14px; color: var(--cinza-texto);
+      line-height: 1.7; margin-bottom: 1.25rem;
+    }
+    .post-meta {
+      display: flex; gap: 1.5rem;
+      font-size: 12px; color: #999; align-items: center;
+    }
+    .post-meta span { display: flex; align-items: center; gap: 5px; }
+
+    /* ===== POSTS GRID ===== */
+    .posts-grid {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 1.25rem; margin-bottom: 2rem;
+    }
+    .post-card {
+      background: #fff; border-radius: var(--radius);
+      overflow: hidden;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.05);
+      transition: transform 0.2s;
+    }
+    .post-card:hover { transform: translateY(-2px); }
+    .post-card-img {
+      height: 100px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 32px; color: rgba(255,255,255,0.5);
+    }
+    .post-card-img.verde { background: var(--verde); }
+    .post-card-img.amarelo { background: var(--amarelo); color: rgba(0,39,118,0.35); }
+    .post-card-img.azul { background: var(--azul); }
+    .post-card-img.azul-escuro { background: var(--azul-escuro); }
+    .post-card-body { padding: 1.125rem; }
+    .post-card-tag {
+      font-size: 10px; letter-spacing: 2px; font-weight: 600;
+      color: var(--verde); margin-bottom: 6px;
+    }
+    .post-card-body h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 14px; font-weight: 700; color: #111;
+      line-height: 1.4; margin-bottom: 6px;
+    }
+    .post-card-body p {
+      font-size: 12px; color: var(--cinza-texto); line-height: 1.55;
+    }
+
+    /* ===== SIDEBAR ===== */
+    .sidebar-widget {
+      background: #fff; border-radius: var(--radius);
+      padding: 1.5rem; margin-bottom: 1.5rem;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.05);
+    }
+    .sidebar-widget h3 {
+      font-size: 12px; letter-spacing: 3px; font-weight: 600;
+      color: var(--verde); margin-bottom: 1.25rem;
+      padding-bottom: 0.75rem;
+      border-bottom: 1px solid #eee;
+    }
+
+    .perfil-card { text-align: center; }
+    .perfil-avatar {
+      width: 72px; height: 72px; border-radius: 50%;
+      background: var(--azul);
+      display: flex; align-items: center; justify-content: center;
+      margin: 0 auto 1rem;
+      font-family: 'Playfair Display', serif;
+      font-size: 28px; font-weight: 700; color: var(--amarelo);
+      border: 3px solid var(--amarelo);
+    }
+    .perfil-cargo {
+      font-size: 10px; letter-spacing: 3px; font-weight: 600;
+      color: var(--verde); margin-bottom: 0.5rem;
+    }
+    .perfil-nome {
+      font-family: 'Playfair Display', serif;
+      font-size: 18px; font-weight: 700; color: #111;
+      margin-bottom: 0.75rem;
+    }
+    .perfil-card p {
+      font-size: 13px; color: var(--cinza-texto);
+      line-height: 1.6;
+    }
+
+    .categorias-list { list-style: none; }
+    .categorias-list li {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 8px 0; font-size: 13px; color: #444;
+      border-bottom: 1px solid #f0f0f0; cursor: pointer;
+      transition: color 0.2s;
+    }
+    .categorias-list li:last-child { border-bottom: none; }
+    .categorias-list li:hover { color: var(--azul); }
+    .cat-count {
+      font-size: 11px; background: var(--cinza-claro);
+      border-radius: 20px; padding: 2px 10px; color: #999;
+    }
+
+    .newsletter-form input[type="email"] {
+      width: 100%; padding: 10px 14px; border: 1px solid #ddd;
+      border-radius: 6px; font-size: 13px; margin-bottom: 10px;
+      font-family: 'Barlow', sans-serif; outline: none;
+      transition: border-color 0.2s;
+    }
+    .newsletter-form input[type="email"]:focus { border-color: var(--azul); }
+    .newsletter-form p {
+      font-size: 13px; color: var(--cinza-texto);
+      line-height: 1.5; margin-bottom: 0.875rem;
+    }
+    .newsletter-form button {
+      width: 100%; background: var(--azul); color: var(--amarelo);
+      border: none; padding: 11px; border-radius: 6px;
+      font-size: 13px; font-weight: 600; letter-spacing: 1px;
+      cursor: pointer; font-family: 'Barlow', sans-serif;
+      transition: background 0.2s;
+    }
+    .newsletter-form button:hover { background: var(--azul-escuro); }
+
+    /* ===== FOOTER ===== */
+    footer {
+      background: var(--azul);
+      border-top: 4px solid var(--verde);
+    }
+    .footer-inner {
+      max-width: 1100px; margin: 0 auto;
+      padding: 1.5rem 2rem;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    footer p { color: rgba(255,255,255,0.45); font-size: 12px; }
+    .footer-faixa { display: flex; gap: 5px; }
+    .footer-faixa span { width: 28px; height: 6px; border-radius: 2px; }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 768px) {
+      .layout { grid-template-columns: 1fr; }
+      .posts-grid { grid-template-columns: 1fr; }
+      .nav-links { display: none; }
+      .hero { padding: 3rem 1.5rem 3rem; }
+      .container { padding: 2rem 1.25rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <div class="nav-inner">
+      <div class="nav-logo">
+        <div class="nav-logo-c">C</div>
+        <span class="nav-nome">CLAUDINEI</span>
+      </div>
+      <ul class="nav-links">
+        <li><a href="#">Início</a></li>
+        <li><a href="#">Política</a></li>
+        <li><a href="#">Brasil</a></li>
+        <li><a href="#">Economia</a></li>
+        <li><a href="#">Sobre</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <svg class="hero-geo" width="320" height="320" viewBox="0 0 320 320">
+      <polygon points="160,10 310,160 160,310 10,160" fill="none" stroke="#FFDF00" stroke-width="3"/>
+      <polygon points="160,50 270,160 160,270 50,160" fill="none" stroke="#FFDF00" stroke-width="1.5"/>
+      <circle cx="160" cy="160" r="60" fill="none" stroke="#FFDF00" stroke-width="2"/>
+      <circle cx="160" cy="160" r="30" fill="none" stroke="#FFDF00" stroke-width="1"/>
+    </svg>
+    <div class="hero-inner">
+      <div class="hero-badge">VICE-PRESIDENTE · INFLUENCIADORES DO BRASIL</div>
+      <h1>Política, economia e o futuro do Brasil</h1>
+      <p>Opiniões, análises e o olhar conservador sobre os grandes temas do país. Aqui você acompanha tudo de perto.</p>
+      <a href="#posts" class="hero-btn">Ler artigos</a>
+    </div>
+  </section>
+
+  <!-- CONTEÚDO -->
+  <div class="container" id="posts">
+    <div class="layout">
+
+      <!-- COLUNA PRINCIPAL -->
+      <main>
+        <div class="section-label">DESTAQUE</div>
+
+        <article class="post-destaque">
+          <div class="post-destaque-img">
+            <svg width="400" height="240" viewBox="0 0 400 240">
+              <polygon points="200,20 380,120 200,220 20,120" fill="none" stroke="#FFDF00" stroke-width="2.5"/>
+              <polygon points="200,50 350,120 200,190 50,120" fill="none" stroke="#FFDF00" stroke-width="1"/>
+              <circle cx="200" cy="120" r="50" fill="none" stroke="#FFDF00" stroke-width="1.5"/>
+            </svg>
+            <span class="post-tag">POLÍTICA</span>
+          </div>
+          <div class="post-destaque-body">
+            <h2>O papel dos influenciadores na política brasileira em 2026</h2>
+            <p>As redes sociais transformaram definitivamente o debate político no Brasil. Os criadores de conteúdo deixaram de ser entretenimento e passaram a ser protagonistas da disputa de narrativas — e a direita está liderando essa mudança. Em 2026, quem domina a tela domina a opinião pública.</p>
+            <div class="post-meta">
+              <span>📅 1 jun 2026</span>
+              <span>⏱ 5 min de leitura</span>
+            </div>
+          </div>
+        </article>
+
+        <div class="section-label">RECENTES</div>
+        <div class="posts-grid">
+
+          <article class="post-card">
+            <div class="post-card-img verde">📊</div>
+            <div class="post-card-body">
+              <div class="post-card-tag">ECONOMIA</div>
+              <h3>Por que o Brasil precisa de reformas agora</h3>
+              <p>O país não pode esperar mais. As reformas estruturais são urgentes para retomar o crescimento e gerar empregos de verdade.</p>
+            </div>
+          </article>
+
+          <article class="post-card">
+            <div class="post-card-img amarelo">⭐</div>
+            <div class="post-card-body">
+              <div class="post-card-tag">BRASIL</div>
+              <h3>Valores e tradição: o que une os brasileiros</h3>
+              <p>Família, fé e trabalho seguem sendo os pilares que sustentam a identidade e a força do povo brasileiro.</p>
+            </div>
+          </article>
+
+          <article class="post-card">
+            <div class="post-card-img azul">🤝</div>
+            <div class="post-card-body">
+              <div class="post-card-tag">INFLUÊNCIA</div>
+              <h3>Como construir audiência com propósito</h3>
+              <p>Ter seguidores é fácil. Ter uma audiência engajada que acredita no que você defende é outra história completamente diferente.</p>
+            </div>
+          </article>
+
+          <article class="post-card">
+            <div class="post-card-img azul-escuro">🇧🇷</div>
+            <div class="post-card-body">
+              <div class="post-card-tag">POLÍTICA</div>
+              <h3>Direita digital: a nova força do conservadorismo</h3>
+              <p>Como o movimento conservador brasileiro conquistou as redes e passou a ditar o ritmo do debate nacional.</p>
+            </div>
+          </article>
+
+        </div>
+      </main>
+
+      <!-- SIDEBAR -->
+      <aside>
+        <div class="sidebar-widget perfil-card">
+          <div class="perfil-avatar">C</div>
+          <div class="perfil-cargo">VICE-PRESIDENTE</div>
+          <div class="perfil-nome">Claudinei</div>
+          <p>Influenciadores do Brasil. Conservador, patriota e defensor dos valores que fazem o Brasil grande.</p>
+        </div>
+
+        <div class="sidebar-widget">
+          <h3>CATEGORIAS</h3>
+          <ul class="categorias-list">
+            <li>Política <span class="cat-count">18</span></li>
+            <li>Economia <span class="cat-count">12</span></li>
+            <li>Brasil <span class="cat-count">9</span></li>
+            <li>Direita <span class="cat-count">7</span></li>
+            <li>Influência <span class="cat-count">5</span></li>
+          </ul>
+        </div>
+
+        <div class="sidebar-widget">
+          <h3>NEWSLETTER</h3>
+          <div class="newsletter-form">
+            <p>Receba os artigos direto no seu e-mail.</p>
+            <input type="email" placeholder="seu@email.com"/>
+            <button type="button">Inscrever</button>
+          </div>
+        </div>
+      </aside>
+
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-inner">
+      <p>© 2026 Claudinei · Todos os direitos reservados</p>
+      <div class="footer-faixa">
+        <span style="background:#009C3B;"></span>
+        <span style="background:#FFDF00;"></span>
+        <span style="background:#002776;"></span>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>
